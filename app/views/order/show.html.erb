@@ -1,0 +1,25 @@
+<div class="col-md-15 drag-div">
+  <div class="form-group">
+    <div id="products">
+      <h2 class="page-header"><tt>Bestellhistorie</tt></h2>
+      <!-- Hier wird das Order Modell ausgelesen und angezeigt -->
+      <table class="table table-striped">
+        <thead>
+          <th>#</th>
+          <th>Kunde</th>
+          <th>Bestellwert</th>
+        </thead>
+        <tbody>
+          <%- @orders.each do |order| %>
+          <tr>
+            <td><%= order.id =%></td>
+            <td><%= order.customer.Vname =%> <%= order.customer.Nname =%></td>
+            <td><%= number_to_currency(order.total, :unit => "€") %></td>
+            <td><%= link_to "Bestellung ansehen",  show_customer_order_path(order) =%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

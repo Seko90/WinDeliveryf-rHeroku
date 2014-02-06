@@ -1,0 +1,34 @@
+  <div class="col-md-15 drag-div">
+    <div class="form-group">
+      <div id="products">
+        <h2 class="page-header"><tt>Produkte</tt></h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Produkt</th>
+              <th>Kategorie</th>
+              <th>Artikelnummer</th>
+              <th>Preis</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @products.each do |product| %>
+            <tr>
+              <td><%= product.id %></td>
+              <td><%= product.title %></td>
+              <td><%= product.category.title %></td>
+              <td><%= product.articlenumber %></td>
+              <td><%= number_to_currency(product.price, :unit => "€") %></td>
+              <td><%= link_to 'Ändern', edit_product_path(product) %></td>
+              <td><%= link_to 'Löschen', product, method: :delete, data: { confirm: 'Sind sie sich sicher?' } %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+      </div>
+    </div>
+    <%= link_to 'Neues Produkt', new_product_path, :class => 'btn btn-info btn-xs' %>
+  </div>

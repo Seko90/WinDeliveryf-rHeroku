@@ -1,0 +1,35 @@
+    <nav class="navbar navbar-inverse" role="navigation">
+        <ul class="nav navbar-nav navbar-left">
+
+            <li>
+                <%= image_tag "logo.png", :size => "70x50" %>
+            </li>
+            <li>
+                <%= link_to "Home", root_path %>
+            </li>
+            <li>
+                <%= link_to "Produkte", products_path %>
+            </li>
+            <li>
+                <%= link_to "Kategorien", categories_path %>
+            </li>
+            <li>
+                <%= link_to "Mitarbeiter", users_path %>
+            </li>
+            <li>
+                <%= link_to "Bestellhistorie", order_show_path %>
+            </li>
+            <li>
+                <%= link_to "FAQ", personal_show_path %>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li>
+                <% if user_signed_in? %>
+                <%= link_to "Abmelden", destroy_user_session_path, :method => :delete %>
+                <% end %></div>
+            </li>
+        </ul>
+    </nav>
+

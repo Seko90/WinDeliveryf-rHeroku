@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  TNummer: MyString
+  Vname: MyString
+  Nname: MyString
+  Straße: MyString
+  HNummer: MyString
+  plz: MyString
+  erstellt: 2014-01-14
+
+two:
+  TNummer: MyString
+  Vname: MyString
+  Nname: MyString
+  Straße: MyString
+  HNummer: MyString
+  plz: MyString
+  erstellt: 2014-01-14

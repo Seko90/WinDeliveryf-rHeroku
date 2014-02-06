@@ -1,0 +1,84 @@
+<h1>"Fast, Simple and Cheap = WinDelivery 2014"</h1>
+
+	<b>Projektname : WinDelivery 2014</b>
+
+<b>Teammitglieder :</b>
+
+Serkan Altin 	348694
+
+Thomas Sauer 	323994
+
+Hussein Hisin	270416
+
+<b>Beschreibung des Projekts: </b>
+
+Uns ist aufgefallen, dass es zwar ein einheitliches Bestellformat für den Kunden gibt(z.B. Lieferservice.de), aber die Lieferanten keine einheitlichen Systeme haben um die Kunden zu verwalten. Unsere Webapplikation soll ein einfacher Einstieg in die Verwaltung von Kunden über das Internet sein. 
+Unser Projekt soll Restaurants das Bearbeiten und Verwalten von Aufträgen in Bezug zur Lieferung von Bestellung an den Kunden vereinfachen.
+Dieses Projekt ist übertragbar auf alle Restaurants mit Lieferservice. Unsere Webapplikation soll die Bestellung überschaubar und in der weiteren Entwicklung auch Statistiken bzw. Rechnungen online darstellbar machen. 
+Uns ist es sehr wichtig gewesen, den Bestellprozess sowie die Usebility durch die Einfachheit zu beschleunigen.
+
+WinDelivery 2014 macht es möglich, dass der User die Artikelnummern nicht mehr auswendig aneignen muss, sowie von Kundendaten bis hinzu Produktpflege leichter händeln lassen.
+
+
+
+
+<b>Beschreibung der technischen Umsetzung:</b>
+
+Für unsere Projekt benötigen wir sechs Datenbanken bzw. Modelle, die folgendermaßen heißen : 
+- "User", Verwaltung der Mitarbeiter-Konten(mit Adminfunktion)
+- "category", um Produkte eine bestimmte Kategorie zuzuordnen
+- "customer", Verwaltung der Kundendatenbank
+- "order", um die Bestellungen durchzuführen
+- "order_item", enthalten die Produkte aus der Bestellung
+- "product", die Produkte, vom Lieferanten die angeboten werden
+
+Im CSS Bereich wurde auf Bootstrap gesetzt
+
+<b>Folgende Beziehungen haben die Modelle : </b>
+
+"category":
+has_many :products
+
+"customer"
+has_many :orders
+
+"order":
+belongs_to :customer
+has_many :order_items
+has_many :products, through: :order_items
+
+"order_item":
+belongs_to :order
+belongs_to :product
+
+"product": 
+belongs_to :category
+has_many :order_items
+has_many :orders, through: :order_items
+
+<b>Folgende GEM´s und Funktionen werden genutzt : </b>
+
+gem 'devise':
+Um die Authentifizierung mithilfe von "devise" durchführen zu können. Veränderung wurden durchgeführt um eine CRUD-Funktion zu implementieren. Damit der Admin neue User erstellen kann, indem dieser eingeloggt ist.
+Hier werden die Passwörter verschlüsselt in der Datenbank abgespeichert.
+Die Authentifikation und Authorizierung ist gemäß unserer Projekt-Anforderung angepasst worden.
+
+
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'jquery-ui-rails':
+
+Um die Kundentabelle und Drag&Drop zu erstellen.
+
+Zur Kundentabelle : 
+
+Mithilfe von JavaScript und JQuery wurde unsere "Data-Table" erstellt, indem wir dann in unsere Kundetabelle, ohne die ganze Seite neu laden Suchen zu können, nach allen Inhalten der Tabelle.
+
+
+Drag&Drop : 
+
+Mit Hilfe von JQueryUI Draggable und Droppable ist es möglich, Produkte aus der Product-Datenbank herauszunehmen und in ein Feld zu packen. Nach Abschluss von Drag und Drop muss auf Bestellung abschliessen geklickt werden. Sobald dies erfolgt werden die Daten aus dem Droppable-Fenster entnommen und der Bestellung des Kunden hinzugefügt bzw. es wird eine Bestellung erstellt vom Kunden mit den ausgewählten Produkten.
+
+Drucken : 
+
+Mithilfe unserer Druckfunktion am Ende des Bestellprozesses ist es möglich, die wichtigen Informationen zur Bestellung zu drucken. Diese kann der Lieferant benötigen oder der Kunde fordern.
+

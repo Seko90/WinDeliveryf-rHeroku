@@ -1,0 +1,36 @@
+ <!-- Auslesen und Anzeigen der grad getätigten Bestellung -->
+ <div class="progress progress-striped active">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%" >Bestellung
+    <span class="sr-only">100% Complete (success)</span>
+  </div>
+</div>
+<table class="table table-bordered">
+  <tr>
+    <td>#</td>
+    <td><%= @order.id %></td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td><%= @order.customer.Vname %> <%= @order.customer.Nname %></td>
+  </tr>
+  <tr>
+    <td>Produkte</td>
+    <td>
+      <ul>
+        <%- @order.products.each do |product| %>
+        <li><span class="item-id"><%= product.articlenumber %></span> <span class="item-title"><b><%= product.title %></b></span><span class="order-price"><%= number_to_currency(product.price, :unit => "€") %></span></li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Gesamt</td>
+    <td><%= number_to_currency(@order.total, :unit => "€") %></td>
+  </tr>
+</table>
+<form action="2">
+ <button type="button" class="btn btn-success btn-xs">
+  <a href="javascript:self.print()">  <span class="glyphicon glyphicon-print" titel="Seite drucken" /> Drucken</a>
+</button>
+</form>
+<%= link_to 'Zurück', order_show_path %>

@@ -1,0 +1,42 @@
+html.devise {
+	background: url(/assets/bg.jpg);
+}
+
+body{
+	background: url(/assets/gg.png) 0 -300px fixed;
+}
+
+table {
+  background: #fff
+}
+
+
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {
+	height: 19px;
+	width: 19px;
+	margin-left: 3px;
+	float: none;
+	cursor: pointer
+}
+
+.btn {color: #fff!important}
+
+.footer {margin-top: 150px}
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty th .asc {
+  background-image: url(/images/up_arrow.gif);
+}
+
+.pretty th .desc {
+  background-image: url(/images/down_arrow.gif);
+}
+
+.order-button {
+  margin-left: 15px;
+  margin-top: 15px
+}

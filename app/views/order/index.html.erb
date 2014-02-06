@@ -1,0 +1,72 @@
+ <div class="progress progress-striped active">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%" >Bestellfortschritt
+    <span class="sr-only">50% Complete (success)</span>
+  </div>
+</div>
+<!-- Auslesen und Anzeigen des Order -->
+<br>
+<div class="row">
+  <div class="col-md-5 drag-div">
+    <div class="form-group">
+      <div id="products">
+        <h1 class="page-header"><tt>Artikelauswahl</tt></h1>
+        <!-- Verbindung zu order.js über div id -->
+        <div id="catalog">
+          <% @categories.each do |category| %>
+          <h2><a href="#"><%= category.title %></a></h2>
+          <div>
+            <ul style="list-style: none;">
+              <% category.products.each do |product| %>
+              <!-- entnimmt die Id, Price über die Data und den Namen des Produktes und den Preis über class  -->
+              <li data-id="<%= product.id %>" data-price="<%= product.price %>" id=<%= product.id %>> <span class="item-id"><%= product.articlenumber %></span> <span class="item-title"><b><%= product.title %></b></span><span class="order-price"><%= number_to_currency(product.price, :unit => "€") %></span></li>
+              <% end %>
+            </ul>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5 drag-div">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="page-header"><tt>Bestellung</tt></h1>
+        <%= render "customers/show" %>
+        <p align="right">
+          <button type="button" class="btn btn-info btn-xs">
+            <span class="glyphicon glyphicon-road"></span> <a target+"_blank" href="https://www.google.de/maps/preview/place/<%=@customer.Straße %>+<%=@customer.HNummer %>,+<%=@customer.plz %>">Route</a>
+          </button></p>
+        </div>
+      </div><br>
+      <%= form_tag(order_index_path, method: :post) do %>
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="cart">
+            <div class="ui-widget-content">
+              <ol>
+                <li class="placeholder">Ziehen Sie die Produkte hier hinein.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- Das Drag&Drop macht einfach die normalen input Felder zurecht und übermittelt die ganz normal per Post.
+        Die beiden Werte "product_ids" und "customer_id" werden versteckt im Formular an die create-methode im Order-controller übergeben -->
+        <input type="hidden" name="order[product_ids]" id="order_products" value="">
+        <input type="hidden" name="order[customer_id]" value="<%= @customer.id %>">
+        <%= button_tag "Bestellung abschliessen", class: "btn btn-success order-button" %>
+        <% end %>
+      </div>
+    </div><br><br>
+    <div class="panel" align="right">
+      <div id="total">
+        Gesamt: <span class="price">0</span> €
+      </div>
+    </div>
+
+
+
+
+
+
+
+

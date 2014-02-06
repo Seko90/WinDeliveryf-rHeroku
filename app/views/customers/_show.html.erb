@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-xs-6">
+    <p>
+      <strong>Telefonnummer:</strong>
+      <%= @customer.TNummer %>
+    </p>
+
+    <p>
+      <strong>Vorname:</strong>
+      <%= @customer.Vname %>
+    </p>
+
+    <p>
+      <strong>Nachname:</strong>
+      <%= @customer.Nname %>
+    </p>
+
+    <%= link_to 'Zurück', 
+    :controller => "customers", 
+    :action => "index",
+    :class => "btn btn-primary" %>
+  </div>
+  <div class="col-xs-6">
+    <p>
+      <strong>Straße:</strong>
+      <%= @customer.Straße %>
+    </p>
+
+    <p>
+      <strong>Hausnummer:</strong>
+      <%= @customer.HNummer %>
+    </p>
+
+    <p>
+      <strong>Postleitzahl:</strong>
+      <%= @customer.plz %>
+    </p>
+  </div>

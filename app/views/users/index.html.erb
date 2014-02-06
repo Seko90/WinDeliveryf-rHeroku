@@ -1,0 +1,27 @@
+<h2 class="page-header"><tt>Mitarbeiter</tt></h2>
+<!-- Auslesen und Anzeigen der Tabelle User-->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Admin</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.admin %></td>
+      <td><%= link_to 'Ändern', edit_user_path(user) %></td>
+      <td><%= link_to 'Löschen', user, method: :delete, data: { confirm: 'Bist du sicher?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Neuen Mitarbeiter erstellen', new_user_path %>

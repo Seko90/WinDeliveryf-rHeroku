@@ -1,0 +1,29 @@
+  <div class="col-md-15 drag-div">
+    <div class="form-group">
+      <div id="products">
+        <h1 class="page-header"><tt>Mitarbeiter</tt></h1>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>zuletzt angemeldet</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.email %></td>
+              <td><%= user.last_sign_in_at %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <br>
+      </div>
+    </div>
+    <%= link_to 'Neuer Mitarbeiter', :controller => 'devise/registrations', :action => 'new', :class => 'btn btn-info btn-xs' %>
+  </div>
